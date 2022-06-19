@@ -1,12 +1,7 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import './App.css';
 import { faHistory, faPenToSquare, faUserGroup } from '@fortawesome/free-solid-svg-icons';
-import ScoreTable from './ScoreTable';
 import EditableScoreTable from './EditableScoreTable';
-import { Input } from '@mui/material';
-import { borderBottom } from '@mui/system';
-import { useState } from 'react';
-import MaterialEditableScoreTable from './MaterialEditableScoreTable';
 
 function App() {
 
@@ -30,12 +25,16 @@ function App() {
 
       <h2>Game Name</h2>
 
-      <MaterialEditableScoreTable></MaterialEditableScoreTable>
-      <br></br>
-      {/*
-      <ScoreTable></ScoreTable>
       <EditableScoreTable></EditableScoreTable>
-      */}
+      <br></br>
+      <EditableScoreTable></EditableScoreTable>
+      <br></br>
+      <EditableScoreTable></EditableScoreTable>
+      <br></br>
+      <EditableScoreTable></EditableScoreTable>
+      <br></br>
+      <EditableScoreTable></EditableScoreTable>
+      <br></br>
       
     </div>
   );
