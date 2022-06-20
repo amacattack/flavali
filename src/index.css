@@ -6,6 +6,8 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background: #549137;
+  padding-left: 2rem;
+  padding-right: 2rem;
 }
 
 code {
@@ -17,8 +19,6 @@ code {
   background: #549137;
   display: flex;
   justify-content: space-between;
-  padding-left: 2rem;
-  padding-right: 2rem;
 }
 
 h1, h2 {
@@ -29,7 +29,7 @@ h1, h2 {
 .headerIcons {
   display: flex;
   align-items: center;
-  justify-content: space-around;
+  justify-content: space-between;
   width: 30%;
   color: #f7f7f7;
 }
