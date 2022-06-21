@@ -50,7 +50,7 @@ function EditableCell(props) {
 function EditableScoreTable() {
 
     return (
-        <TableContainer component={Paper}>
+        <TableContainer component={Paper} className="EditableScoreTable">
             <Table aria-label="simple table">
                 <TableHead>
                     <TableRow>
@@ -80,7 +80,7 @@ function EditableScoreTable() {
                 </TableBody>
             </Table>
         </TableContainer>
-    );
+    )
 }
 
 

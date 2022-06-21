@@ -3,10 +3,11 @@ import "./App.css";
 import {
   faHistory,
   faPenToSquare,
-  faUserGroup,
 } from "@fortawesome/free-solid-svg-icons";
 import EditableScoreTable from "./EditableScoreTable";
+import EditableGameName from "./EditableGameName";
 import { ThemeProvider, createTheme, Button } from "@mui/material";
+import PlayerNamesDialog from "./PlayerNamesDialog";
 
 function App() {
   const theme = createTheme({
@@ -28,7 +29,7 @@ function App() {
         <div className="navBar">
           <h1>FLAVALI</h1>
           <div className="headerIcons">
-            <FontAwesomeIcon icon={faUserGroup} />
+            <PlayerNamesDialog></PlayerNamesDialog>
             <FontAwesomeIcon icon={faPenToSquare} />
             <FontAwesomeIcon icon={faHistory} />
             <Button variant="contained">LOG IN</Button>
@@ -41,19 +42,17 @@ function App() {
             backgroundColor: "#f7f7f7",
           }}
         />
+        {/* GAME NAME */}
+        <EditableGameName></EditableGameName>
 
-        <h2>Game Name</h2>
+        {/* GAME CARDS | SCORE TABLES */}
+        <EditableScoreTable></EditableScoreTable>
+        <EditableScoreTable></EditableScoreTable>
+        <EditableScoreTable></EditableScoreTable>
+        <EditableScoreTable></EditableScoreTable>
+        <EditableScoreTable></EditableScoreTable>
+        <br></br>
 
-        <EditableScoreTable></EditableScoreTable>
-        <br></br>
-        <EditableScoreTable></EditableScoreTable>
-        <br></br>
-        <EditableScoreTable></EditableScoreTable>
-        <br></br>
-        <EditableScoreTable></EditableScoreTable>
-        <br></br>
-        <EditableScoreTable></EditableScoreTable>
-        <br></br>
       </ThemeProvider>
     </div>
   );

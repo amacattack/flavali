@@ -21,7 +21,7 @@ code {
   justify-content: space-between;
 }
 
-h1, h2 {
+h1 {
   text-align: left;
   color: #f7f7f7;
 }
@@ -34,3 +34,15 @@ h1, h2 {
   color: #f7f7f7;
 }
 
+.EditableGameName {
+  text-align: left;
+  display: flex;
+  padding-top: 1rem;
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #f7f7f7;
+}
+
+.EditableScoreTable {
+ margin-top: 1rem;
+}
