@@ -8,8 +8,17 @@ import EditableScoreTable from "./EditableScoreTable";
 import EditableGameName from "./EditableGameName";
 import { ThemeProvider, createTheme, Button } from "@mui/material";
 import PlayerNamesDialog from "./PlayerNamesDialog";
+import SignInModal from "./SignInModal/SignInModal";
+import { useState } from "react";
 
-function App() {
+function App(props) {
+  const [isSignInModalOpen, setIsSignInModalOpen] = useState(false);
+  const [isSignedIn, setIsSignedIn] = useState(false); // Local signed-in state.
+
+  const handleLoginPress = () => {
+    setIsSignInModalOpen(true);
+  };
+
   const theme = createTheme({
     palette: {
       // mode: "dark",
@@ -26,13 +35,23 @@ function App() {
   return (
     <div className="App">
       <ThemeProvider theme={theme}>
+        <SignInModal
+          isSignInModalOpen={isSignInModalOpen}
+          onClose={() => setIsSignInModalOpen(false)}
+          uiConfig={props.uiConfig}
+          auth={props.auth}
+          isSignedIn={isSignedIn}
+          setIsSignedIn={setIsSignedIn}
+        />
         <div className="navBar">
           <h1>FLAVALI</h1>
           <div className="headerIcons">
             <PlayerNamesDialog></PlayerNamesDialog>
             <FontAwesomeIcon icon={faPenToSquare} />
             <FontAwesomeIcon icon={faHistory} />
-            <Button variant="contained">LOG IN</Button>
+            <Button variant="contained" onClick={handleLoginPress}>
+              {isSignedIn ? "LOG OUT" : "LOG IN"}
+            </Button>
           </div>
         </div>
 
@@ -59,3 +78,5 @@ function App() {
 }
 
 export default App;
+
+
