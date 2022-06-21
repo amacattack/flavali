@@ -48,6 +48,19 @@ function EditableCell(props) {
 }
 
 function EditableScoreTable() {
+  /*
+   
+    gameData.category.name
+    gameData.category.players
+    gameData.category.gameScores
+    
+
+    gameData.category.playerFoodScores.forEach((playerFoodScores) =>)
+    gameData.category.playerFoodScores.players.map()
+    gameData.category.playerFoodScores.players.map()
+    gameData.category.playerFoodScores.foods.map()
+
+  */
 
     return (
         <TableContainer component={Paper}>
