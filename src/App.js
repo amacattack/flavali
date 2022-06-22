@@ -10,14 +10,11 @@ import { ThemeProvider, createTheme, Button } from "@mui/material";
 import PlayerNamesDialog from "./PlayerNamesDialog";
 import SignInModal from "./SignInModal/SignInModal";
 import { useState } from "react";
+// import { DEFAULT_GAME_DATA } from "./api";
 
 function App(props) {
   const [isSignInModalOpen, setIsSignInModalOpen] = useState(false);
   const [isSignedIn, setIsSignedIn] = useState(false); // Local signed-in state.
-
-  const handleLoginPress = () => {
-    setIsSignInModalOpen(true);
-  };
 
   const theme = createTheme({
     palette: {
@@ -31,6 +28,16 @@ function App(props) {
       // },
     },
   });
+
+  const handleLoginPress = () => {
+    setIsSignInModalOpen(true);
+  };
+
+  // const renderScoreTables = () => {
+  //   const scoreTables = [];
+
+  //   DEFAULT_GAME_DATA.categories.forEach(category => (console.log(category)))
+  // };
 
   return (
     <div className="App">
@@ -61,6 +68,7 @@ function App(props) {
             backgroundColor: "#f7f7f7",
           }}
         />
+
         {/* GAME NAME */}
         <EditableGameName></EditableGameName>
 
@@ -71,6 +79,10 @@ function App(props) {
         <EditableScoreTable></EditableScoreTable>
         <EditableScoreTable></EditableScoreTable>
         <br></br>
+
+        {/* {
+          renderScoreTables()
+        } */}
 
       </ThemeProvider>
     </div>
