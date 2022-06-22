@@ -11,22 +11,20 @@ import { faUserGroup } from "@fortawesome/free-solid-svg-icons";
 
 function PlayerNamesDialog() {
   const [open, setOpen] = React.useState(false); 
-  const [mouse, setMouse] = React.useState(false);
 
   const handleClickOpen = () => {
     setOpen(true);
-    setMouse(true);
-
   };
 
   const handleClose = () => {
     setOpen(false);
-    setMouse(false);
   };
 
   return (
     <div>
-      <FontAwesomeIcon icon={faUserGroup} onClick={handleClickOpen} mouse={mouse}/>
+      <Button>
+        <FontAwesomeIcon icon={faUserGroup} onClick={handleClickOpen} />
+      </Button>
       <Dialog open={open} onClose={handleClose}>
         <DialogTitle>Player Names</DialogTitle>
         <DialogContent>

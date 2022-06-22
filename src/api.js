@@ -3,17 +3,29 @@ export const DEFAULT_GAME_DATA = {
   categories: [
     {
       name: "Chocolate",
-      foodScores: {
-        foodName: "Food name",
-        playerScores: [{ uid1: 0.0 }, { uid2: 0.0 }],
-      },
+      foodScores: [
+        {
+          foodName: "Item 1",
+          playerScores: [{ uid1: 0.0 }, { uid2: 0.0 }],
+        },
+        {
+          foodName: "Item 2",
+          playerScores: [{ uid1: 0.0 }, { uid2: 0.0 }],
+        }
+      ],
     },
     {
-      name: "Sweet/Sour",
-      foodScores: {
-        foodName: "Food name",
-        playerScores: [{ uid1: 0.0 }, { uid2: 0.0 }],
-      },
+      name: "Sweet",
+      foodScores: [
+        {
+          foodName: "Item 1",
+          playerScores: [{ uid1: 0.0 }, { uid2: 0.0 }],
+        },
+        {
+          foodName: "Item 2",
+          playerScores: [{ uid1: 0.0 }, { uid2: 0.0 }],
+        }
+      ],
     },
   ],
 };

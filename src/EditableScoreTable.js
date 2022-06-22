@@ -48,19 +48,40 @@ function EditableCell(props) {
 }
 
 function EditableScoreTable() {
-  /*
-   
-    gameData.category.name
-    gameData.category.players
-    gameData.category.gameScores
-    
 
-    gameData.category.playerFoodScores.forEach((playerFoodScores) =>)
-    gameData.category.playerFoodScores.players.map()
-    gameData.category.playerFoodScores.players.map()
-    gameData.category.playerFoodScores.foods.map()
+    // return (
+    //     <TableContainer component={Paper} className="EditableScoreTable">
+    //         <Table aria-label="simple table">
+    //             <TableHead>
+    //                 <TableRow>
+    //                     <EditableCell defaultValue={"CATEGORY"} />
+    //                     <EditableCell defaultValue={"Player 1"} align={"right"} />
+    //                     <EditableCell defaultValue={"Player 2"} align={"right"} />
+    //                     <TableCell align={"right"}>Average</TableCell>
+    //                 </TableRow>
+    //             </TableHead>
+    //             <TableBody>
+    //                 <TableRow
+    //                     sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+    //                 >
+    //                     <EditableCell defaultValue={"Item 1"} />
+    //                     <EditableCell defaultValue={0.0} type={"number"} align="right" />
+    //                     <EditableCell defaultValue={0.0} type={"number"} align="right" />
+    //                     <TableCell align={"right"}>Average</TableCell>
+    //                 </TableRow>
+    //                 <TableRow
+    //                     sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+    //                 >
+    //                     <EditableCell defaultValue={"Item 2"} />
+    //                     <EditableCell defaultValue={0.0} type={"number"} align="right" />
+    //                     <EditableCell defaultValue={0.0} type={"number"} align="right" />
+    //                     <TableCell align={"right"}>Average</TableCell>
+    //                 </TableRow>    
+    //             </TableBody>
+    //         </Table>
+    //     </TableContainer>
+    // )
 
-  */
 
     return (
         <TableContainer component={Paper} className="EditableScoreTable">
