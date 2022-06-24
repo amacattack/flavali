@@ -46,3 +46,9 @@ h1 {
 .EditableScoreTable {
  margin-top: 1rem;
 }
+
+.addAnotherPlayer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
