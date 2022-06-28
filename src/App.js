@@ -54,8 +54,8 @@ function App(props) {
           <h1>FLAVALI</h1>
           <div className="headerIcons">
             <PlayerNamesDialog></PlayerNamesDialog>
-            <FontAwesomeIcon icon={faPenToSquare} />
-            <FontAwesomeIcon icon={faHistory} />
+            {/* <FontAwesomeIcon icon={faPenToSquare} />
+            <FontAwesomeIcon icon={faHistory} /> */}
             <Button variant="contained" onClick={handleLoginPress}>
               {isSignedIn ? "LOG OUT" : "LOG IN"}
             </Button>
@@ -73,17 +73,16 @@ function App(props) {
         <EditableGameName></EditableGameName>
 
         {/* GAME CARDS | SCORE TABLES */}
+        <EditableScoreTable 
+          category = {"Category"}
+          playerNames = {["Player 1", "Player 2"]}
+        ></EditableScoreTable>
+        {/* <EditableScoreTable></EditableScoreTable>
         <EditableScoreTable></EditableScoreTable>
         <EditableScoreTable></EditableScoreTable>
-        <EditableScoreTable></EditableScoreTable>
-        <EditableScoreTable></EditableScoreTable>
-        <EditableScoreTable></EditableScoreTable>
+        <EditableScoreTable></EditableScoreTable> */}
         <br></br>
-
-        {/* {
-          renderScoreTables()
-        } */}
-
+         
       </ThemeProvider>
     </div>
   );
