@@ -6,7 +6,6 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import EditableScoreTable from "./EditableScoreTable";
 import EditableGameName from "./EditableGameName";
-import EditableCell from './EditableCell';
 import { ThemeProvider, createTheme, Button } from "@mui/material";
 import PlayerNamesDialog from "./PlayerNamesDialog";
 import SignInModal from "./SignInModal/SignInModal";
@@ -33,23 +32,18 @@ function App(props) {
     setIsSignInModalOpen(true);
   };
 
-  function renderScoreTables() {
-    const scoreTables = [];
-   
-    DEFAULT_GAME_DATA.categories.forEach((category) => {
-      scoreTables.push(
-        <EditableScoreTable
-          category={category.name}
-          key={category.name}
-          playerNames={["Player 1", "Player 2"]}
-        />
-      )
-    });
-    console.log(scoreTables)
+  // Rendering Score Tables
+  const renderScoreTables = () => {
+    const scoreTables = DEFAULT_GAME_DATA.categories.map((category) =>
+      <EditableScoreTable
+        category={category.name}
+        key={category.name}
+        playerNames={DEFAULT_GAME_DATA.players}
+        foodRows={category.foodRows}
+      />
+    );
     return scoreTables;
   }
-
-
 
   return (
     <div className="App">
@@ -95,6 +89,7 @@ function App(props) {
       </ThemeProvider>
     </div>
   );
+
 }
 
 export default App;

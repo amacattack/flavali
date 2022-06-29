@@ -10,7 +10,6 @@ import Grid from "@material-ui/core/Grid";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCircleMinus, faCirclePlus, faUserGroup } from "@fortawesome/free-solid-svg-icons";
 
-//  Rendering Player Text Fields
 function PlayerNamesDialog() {
   const [isOpen, isSetOpen] = React.useState(false);
   const [players, setPlayers] = React.useState(["Player 1", "Player 2"]);
@@ -23,21 +22,18 @@ function PlayerNamesDialog() {
     isSetOpen(false);
   };
 
+  // Rendering Player Text Fields
   const renderPlayerTextFields = () => {
-    const playerTextFields = [];
-
-    players.forEach((player) => {
-      playerTextFields.push(
-        <TextField
-          key={player}
-          label={player}
-          autoFocus
-          margin="dense"
-          fullWidth
-          variant="standard"
-        />
-      );
-    })
+    const playerTextFields = players.map((player) =>
+      <TextField
+        key={player}
+        label={player}
+        autoFocus
+        margin="dense"
+        fullWidth
+        variant="standard"
+      />
+    );
     return playerTextFields;
   }
 

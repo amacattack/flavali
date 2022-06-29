@@ -1,0 +1,25 @@
+|||||||||||||| TODO ||||||||||||||
+
+App.js
+[x] replace all `.forEach` with `.map`
+[x] render player names from api.js
+[x] add prop for foodRows on EditableScoreTable 
+[x] render food rows {"item", [0.0, 0.0], 0.0}
+
+
+State Management
+--------------------------
+
+    PLAYERS:
+    [] adding player will add a new row (item) and new column (player #)
+    [] update name 
+
+    CATEGORIES: 
+    [] Calculate food average 
+    [] Calculate category averegae 
+    [] update name 
+    [] add + delete categories 
+    [] update scores 
+
+    ITEMS:
+    [] update names 
