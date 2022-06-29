@@ -3,27 +3,31 @@ export const DEFAULT_GAME_DATA = {
   categories: [
     {
       name: "Chocolate",
-      foodScores: [
+      foodRows: [
         {
           foodName: "Item 1",
           playerScores: [0.0, 0.0],
+          average: 7.0,
         },
         {
           foodName: "Item 2",
           playerScores: [0.0, 0.0],
+          average: 6.0,
         },
       ],
     },
     {
       name: "Sweet",
-      foodScores: [
+      foodRows: [
         {
           foodName: "Item 1",
           playerScores: [0.0, 0.0],
+          average: 0.0,
         },
         {
           foodName: "Item 2",
           playerScores: [0.0, 0.0],
+          average: 0.0,
         },
       ],
     },
