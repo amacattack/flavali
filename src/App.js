@@ -6,16 +6,16 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import EditableScoreTable from "./EditableScoreTable";
 import EditableGameName from "./EditableGameName";
+import EditableCell from './EditableCell';
 import { ThemeProvider, createTheme, Button } from "@mui/material";
 import PlayerNamesDialog from "./PlayerNamesDialog";
 import SignInModal from "./SignInModal/SignInModal";
 import { useState } from "react";
-// import { DEFAULT_GAME_DATA } from "./api";
+import { DEFAULT_GAME_DATA } from "./api";
 
 function App(props) {
   const [isSignInModalOpen, setIsSignInModalOpen] = useState(false);
   const [isSignedIn, setIsSignedIn] = useState(false); // Local signed-in state.
-
   const theme = createTheme({
     palette: {
       // mode: "dark",
@@ -33,11 +33,23 @@ function App(props) {
     setIsSignInModalOpen(true);
   };
 
-  // const renderScoreTables = () => {
-  //   const scoreTables = [];
+  function renderScoreTables() {
+    const scoreTables = [];
+   
+    DEFAULT_GAME_DATA.categories.forEach((category) => {
+      scoreTables.push(
+        <EditableScoreTable
+          category={category.name}
+          key={category.name}
+          playerNames={["Player 1", "Player 2"]}
+        />
+      )
+    });
+    console.log(scoreTables)
+    return scoreTables;
+  }
 
-  //   DEFAULT_GAME_DATA.categories.forEach(category => (console.log(category)))
-  // };
+
 
   return (
     <div className="App">
@@ -73,16 +85,13 @@ function App(props) {
         <EditableGameName></EditableGameName>
 
         {/* GAME CARDS | SCORE TABLES */}
-        <EditableScoreTable 
-          category = {"Category"}
-          playerNames = {["Player 1", "Player 2"]}
-        ></EditableScoreTable>
+        {renderScoreTables()}
         {/* <EditableScoreTable></EditableScoreTable>
         <EditableScoreTable></EditableScoreTable>
         <EditableScoreTable></EditableScoreTable>
         <EditableScoreTable></EditableScoreTable> */}
         <br></br>
-         
+
       </ThemeProvider>
     </div>
   );

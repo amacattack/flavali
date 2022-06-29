@@ -16,11 +16,16 @@ function EditableScoreTable(props) {
 
         props.playerNames.forEach((player) => {
             playerArray.push(
-                <EditableCell defaultValue={player} align={"right"} />
+                <EditableCell
+                    defaultValue={player}
+                    key={player}
+                    align={"right"}
+                />
             );
         })
         return playerArray;
     }
+    
 
     return (
         <TableContainer component={Paper} className="EditableScoreTable">
@@ -41,7 +46,7 @@ function EditableScoreTable(props) {
                         <EditableCell defaultValue={0.0} type={"number"} align={"right"} />
                         <TableCell align={"right"}>Average</TableCell>
                     </TableRow>
-                    
+
                     <TableRow
                         sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                     >
