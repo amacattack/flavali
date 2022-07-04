@@ -7,9 +7,13 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import Grid from "@material-ui/core/Grid";
+import Backdrop from '@mui/material/Backdrop';
+import CircularProgress from '@mui/material/CircularProgress';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCircleMinus, faCirclePlus, faUserGroup } from "@fortawesome/free-solid-svg-icons";
+import { faCirclePlus, faUserGroup } from "@fortawesome/free-solid-svg-icons";
+import DeletePlayerDialog from './DeletePlayerDialog';
 
+// Add and Delete Players Dialog 
 function PlayerNamesDialog() {
   const [isOpen, isSetOpen] = React.useState(false);
   const [players, setPlayers] = React.useState(["Player 1", "Player 2"]);
@@ -43,17 +47,6 @@ function PlayerNamesDialog() {
     const newPlayerName = `Player ${newPlayerNumber}`;
 
     setPlayers(players => [...players, newPlayerName]);
-    console.log("add players: ", players)
-  }
-
-  // Remove Player Text Field 
-  const deletePlayer = () => {
-    if (players.length > 2) {
-      setPlayers([
-        ...players.slice(0, players.length - 1)
-      ]);
-    }
-    console.log("minus players: ", players)
   }
 
   return (
@@ -61,6 +54,13 @@ function PlayerNamesDialog() {
       <Button onClick={handleClickOpen}>
         <FontAwesomeIcon icon={faUserGroup} />
       </Button>
+      <Backdrop
+        sx={{ color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1 }}
+        open={isOpen}
+        onClick={handleClose}
+      >
+        <CircularProgress color="inherit" />
+      </Backdrop>
       <Dialog open={isOpen} onClose={handleClose}>
         <DialogTitle>Player Names</DialogTitle>
         <DialogContent>
@@ -72,9 +72,7 @@ function PlayerNamesDialog() {
             <Button onClick={addPlayer}>
               <FontAwesomeIcon icon={faCirclePlus} />
             </Button>
-            <Button onClick={deletePlayer}>
-              <FontAwesomeIcon icon={faCircleMinus} />
-            </Button>
+            <DeletePlayerDialog players={players} setPlayers={setPlayers} />
           </Grid>
         </DialogContent>
         <DialogActions>
