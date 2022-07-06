@@ -15,11 +15,11 @@ State Management
     [] update name 
 
     CATEGORIES: 
-    [] Calculate food average 
-    [] Calculate category averegae 
     [] update name 
     [] add + delete categories 
     [] update scores 
+    [] Calculate food average 
+    [] Calculate category averegae 
 
     ITEMS:
     [] update names 

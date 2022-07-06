@@ -14,8 +14,6 @@ export default function SignInScreen(props) {
 
   useEffect(() => {
     const unregisterAuthObserver = auth.onAuthStateChanged((user) => {
-      console.log("user: ", user);
-      console.log("user stringified: ", JSON.stringify(user));
       setIsSignedIn(!!user);
     });
     return () => unregisterAuthObserver(); // Make sure we un-register Firebase observers when the component unmounts.

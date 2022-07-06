@@ -9,10 +9,11 @@ import DialogTitle from '@mui/material/DialogTitle';
 import Grid from "@material-ui/core/Grid";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCircleMinus, faCirclePlus, faUserGroup } from "@fortawesome/free-solid-svg-icons";
+import {addPlayer} from './state';
 
-function PlayerNamesDialog() {
+function PlayerNamesDialog(props) {
   const [isOpen, isSetOpen] = React.useState(false);
-  const [players, setPlayers] = React.useState(["Player 1", "Player 2"]);
+  // const [players, setPlayers] = React.useState(["Player 1", "Player 2"]);
 
   const handleClickOpen = () => {
     isSetOpen(true);
@@ -24,7 +25,7 @@ function PlayerNamesDialog() {
 
   // Rendering Player Text Fields
   const renderPlayerTextFields = () => {
-    const playerTextFields = players.map((player) =>
+    const playerTextFields = props.players.map((player) =>
       <TextField
         key={player}
         label={player}
@@ -38,22 +39,25 @@ function PlayerNamesDialog() {
   }
 
   // Add Player Text Field
-  const addPlayer = () => {
-    const newPlayerNumber = players.length + 1;
+  const handleAddPlayer = () => {
+    const newPlayerNumber = props.players.length + 1;
     const newPlayerName = `Player ${newPlayerNumber}`;
 
-    setPlayers(players => [...players, newPlayerName]);
-    console.log("add players: ", players)
+    // setPlayers(players => [...players, newPlayerName]);
+    console.log("add players: ", props.players)
+    props.dispatch(addPlayer(newPlayerName))
   }
 
   // Remove Player Text Field 
   const deletePlayer = () => {
-    if (players.length > 2) {
-      setPlayers([
-        ...players.slice(0, players.length - 1)
-      ]);
-    }
-    console.log("minus players: ", players)
+    console.log('delete player')
+
+    // if (props.players.length > 2) {
+    //   setPlayers([
+    //     ...props.players.slice(0, props.players.length - 1)
+    //   ]);
+    // }
+    // console.log("minus players: ", props.players)
   }
 
   return (
@@ -69,7 +73,7 @@ function PlayerNamesDialog() {
           </DialogContentText>
           {renderPlayerTextFields()}
           <Grid container justifyContent="center">
-            <Button onClick={addPlayer}>
+            <Button onClick={handleAddPlayer}>
               <FontAwesomeIcon icon={faCirclePlus} />
             </Button>
             <Button onClick={deletePlayer}>

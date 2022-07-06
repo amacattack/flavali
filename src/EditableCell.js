@@ -2,7 +2,6 @@ import * as React from 'react';
 import TableCell from '@mui/material/TableCell';
 
 function EditableCell(props) {
-    const [text, setText] = React.useState(props.defaultValue)
     const [isFocused, setIsFocused] = React.useState(false)
     const [mouse, setMouse] = React.useState(false)
 
@@ -21,9 +20,12 @@ function EditableCell(props) {
                 min="0" 
                 max="10"
                 onChange={(changeEvent) => {
-                    setText(changeEvent.target.value);
+                  if (props.onChange !== undefined) {
+                    const changedText = changeEvent.target.value
+                    props.onChange(changedText);
+                  }
                 }}
-                value={text}
+                value={props.value}
                 style={{
                     backgroundColor: 'transparent',
                     outline: 'none',

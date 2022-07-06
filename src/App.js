@@ -9,22 +9,20 @@ import EditableGameName from "./EditableGameName";
 import { ThemeProvider, createTheme, Button } from "@mui/material";
 import PlayerNamesDialog from "./PlayerNamesDialog";
 import SignInModal from "./SignInModal/SignInModal";
-import { useState } from "react";
-import { DEFAULT_GAME_DATA } from "./api";
+import { useState, useReducer } from "react";
+import { DEFAULT_GAME_DATA, reducer } from "./state";
 
 function App(props) {
   const [isSignInModalOpen, setIsSignInModalOpen] = useState(false);
   const [isSignedIn, setIsSignedIn] = useState(false); // Local signed-in state.
+  const [state, dispatch] = useReducer(reducer, DEFAULT_GAME_DATA)
+  console.log('state: ', state)
+
   const theme = createTheme({
     palette: {
-      // mode: "dark",
       primary: {
         main: "#5f5f5f",
       },
-      // alternateTextColor: "black",
-      // secondary: {
-      //   main: "#ffffff",
-      // },
     },
   });
 
@@ -34,12 +32,13 @@ function App(props) {
 
   // Rendering Score Tables
   const renderScoreTables = () => {
-    const scoreTables = DEFAULT_GAME_DATA.categories.map((category) =>
+    const scoreTables = state.categories.map((category) =>
       <EditableScoreTable
         category={category.name}
         key={category.name}
-        playerNames={DEFAULT_GAME_DATA.players}
+        playerNames={state.players}
         foodRows={category.foodRows}
+        dispatch={dispatch}
       />
     );
     return scoreTables;
@@ -59,7 +58,7 @@ function App(props) {
         <div className="navBar">
           <h1>FLAVALI</h1>
           <div className="headerIcons">
-            <PlayerNamesDialog></PlayerNamesDialog>
+            <PlayerNamesDialog dispatch={dispatch} players={state.players}></PlayerNamesDialog>
             {/* <FontAwesomeIcon icon={faPenToSquare} />
             <FontAwesomeIcon icon={faHistory} /> */}
             <Button variant="contained" onClick={handleLoginPress}>
