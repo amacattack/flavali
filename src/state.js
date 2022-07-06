@@ -148,8 +148,9 @@ export const reducer = function reducer(state, action) {
       return { players: updatedPlayers, categories: state.categories };
 
     // Category action listeners
-    case "UPDATE_NAME":
-      break;
+    case "UPDATE_CATEGORY_NAME":
+      // TODO
+      return state;
 
     case "ADD_CATEGORY":
       break;
@@ -193,3 +194,13 @@ export const updatePlayerName = (playerIdx, newPlayerName) => {
     newPlayerName,
   };
 };
+
+
+export const updateCategoryName = (categoryIdx, newCategoryName) => {
+  // TODO:
+  return {
+    type: "UPDATE_CATEGORY_NAME",
+    categoryIdx,
+    newCategoryName,
+  }
+}

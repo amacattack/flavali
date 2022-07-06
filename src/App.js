@@ -10,7 +10,7 @@ import { ThemeProvider, createTheme, Button } from "@mui/material";
 import PlayerNamesDialog from "./PlayerNamesDialog";
 import SignInModal from "./SignInModal/SignInModal";
 import { useState, useReducer } from "react";
-import { DEFAULT_GAME_DATA, reducer } from "./state";
+import { DEFAULT_GAME_DATA, reducer, updateCategoryName } from "./state";
 
 function App(props) {
   const [isSignInModalOpen, setIsSignInModalOpen] = useState(false);
@@ -32,13 +32,13 @@ function App(props) {
 
   // Rendering Score Tables
   const renderScoreTables = () => {
-    const scoreTables = state.categories.map((category) =>
+    const scoreTables = state.categories.map((category, categoryIdx) =>
       <EditableScoreTable
         category={category.name}
         key={category.name}
         playerNames={state.players}
         foodRows={category.foodRows}
-        dispatch={dispatch}
+        setCategoryName={(newCategoryName) => dispatch(updateCategoryName(categoryIdx, newCategoryName))}
       />
     );
     return scoreTables;

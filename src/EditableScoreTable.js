@@ -68,7 +68,7 @@ function EditableScoreTable(props) {
             <Table aria-label="simple table">
                 <TableHead>
                     <TableRow>
-                        <EditableCell value={props.category} />
+                      <EditableCell value={props.category} onChange={props.setCategoryName}/>
                         {renderPlayerNames()}
                         <TableCell align={"right"}>Average</TableCell>
                     </TableRow>
