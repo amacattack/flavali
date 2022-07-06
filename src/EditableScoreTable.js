@@ -15,9 +15,9 @@ function EditableScoreTable(props) {
     const renderPlayerNames = () => {
         const playerArray = props.playerNames.map((playerName, playerIdx) =>
             <EditableCell
-                value={playerName}
+                defaultValue={playerName}
                 key={playerName}
-                onChange={(newPlayerName) => props.dispatch(updatePlayerName(playerIdx, newPlayerName))}
+                onBlur={(newPlayerName) => props.dispatch(updatePlayerName(playerIdx, newPlayerName))}
                 align={"right"}
             />
         );
@@ -33,16 +33,15 @@ function EditableScoreTable(props) {
             >
                 {/* render food name */}
                 <EditableCell
-                    value={row.foodName}
+                    defaultValue={row.foodName}
                     key={row.foodName}
                 />
 
                 {/* render scores */}
                 {row.playerScores.map((scores, index) => {
-                    console.log(scores)
                     return (
                         <EditableCell
-                            value={scores}
+                            defaultValue={scores}
                             key={index}     
                             type={"number"}
                             align={"right"}
@@ -68,7 +67,7 @@ function EditableScoreTable(props) {
             <Table aria-label="simple table">
                 <TableHead>
                     <TableRow>
-                      <EditableCell value={props.category} onChange={props.setCategoryName}/>
+                      <EditableCell defaultValue={props.category} onBlur={props.setCategoryName}/>
                         {renderPlayerNames()}
                         <TableCell align={"right"}>Average</TableCell>
                     </TableRow>
