@@ -10,13 +10,13 @@ import Grid from "@material-ui/core/Grid";
 import Backdrop from '@mui/material/Backdrop';
 import CircularProgress from '@mui/material/CircularProgress';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCirclePlus, faUserGroup } from "@fortawesome/free-solid-svg-icons";
+import { faCircleMinus, faCirclePlus, faUserGroup } from "@fortawesome/free-solid-svg-icons";
 import DeletePlayerDialog from './DeletePlayerDialog';
+import { addPlayer } from './state';
 
-// Add and Delete Players Dialog 
-function PlayerNamesDialog() {
+function PlayerNamesDialog(props) {
   const [isOpen, isSetOpen] = React.useState(false);
-  const [players, setPlayers] = React.useState(["Player 1", "Player 2"]);
+  // const [players, setPlayers] = React.useState(["Player 1", "Player 2"]);
 
   const handleClickOpen = () => {
     isSetOpen(true);
@@ -28,7 +28,7 @@ function PlayerNamesDialog() {
 
   // Rendering Player Text Fields
   const renderPlayerTextFields = () => {
-    const playerTextFields = players.map((player) =>
+    const playerTextFields = props.players.map((player) =>
       <TextField
         key={player}
         label={player}
@@ -42,11 +42,13 @@ function PlayerNamesDialog() {
   }
 
   // Add Player Text Field
-  const addPlayer = () => {
-    const newPlayerNumber = players.length + 1;
+  const handleAddPlayer = () => {
+    const newPlayerNumber = props.players.length + 1;
     const newPlayerName = `Player ${newPlayerNumber}`;
 
-    setPlayers(players => [...players, newPlayerName]);
+    // setPlayers(players => [...players, newPlayerName]);
+    console.log("add players: ", props.players)
+    props.dispatch(addPlayer(newPlayerName))
   }
 
   return (
@@ -69,10 +71,10 @@ function PlayerNamesDialog() {
           </DialogContentText>
           {renderPlayerTextFields()}
           <Grid container justifyContent="center">
-            <Button onClick={addPlayer}>
+            <Button onClick={handleAddPlayer}>
               <FontAwesomeIcon icon={faCirclePlus} />
             </Button>
-            <DeletePlayerDialog players={players} setPlayers={setPlayers} />
+            <DeletePlayerDialog players={props.players} />
           </Grid>
         </DialogContent>
         <DialogActions>

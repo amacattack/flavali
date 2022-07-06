@@ -7,15 +7,17 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper'
 import EditableCell from './EditableCell';
+import {updatePlayerName} from './state';
 
 function EditableScoreTable(props) {
 
     // Rendering Player Names on Table
     const renderPlayerNames = () => {
-        const playerArray = props.playerNames.map((player) =>
+        const playerArray = props.playerNames.map((playerName, playerIdx) =>
             <EditableCell
-                defaultValue={player}
-                key={player}
+                defaultValue={playerName}
+                key={playerName}
+                onBlur={(newPlayerName) => props.dispatch(updatePlayerName(playerIdx, newPlayerName))}
                 align={"right"}
             />
         );
@@ -37,7 +39,6 @@ function EditableScoreTable(props) {
 
                 {/* render scores */}
                 {row.playerScores.map((scores, index) => {
-                    console.log(scores)
                     return (
                         <EditableCell
                             defaultValue={scores}
@@ -66,7 +67,7 @@ function EditableScoreTable(props) {
             <Table aria-label="simple table">
                 <TableHead>
                     <TableRow>
-                        <EditableCell defaultValue={props.category} />
+                      <EditableCell defaultValue={props.category} onBlur={props.setCategoryName}/>
                         {renderPlayerNames()}
                         <TableCell align={"right"}>Average</TableCell>
                     </TableRow>

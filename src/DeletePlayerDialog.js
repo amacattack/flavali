@@ -22,12 +22,14 @@ function DeletePlayerDialog(props) {
 
     // Delete Player Text Field
     const deletePlayer = () => {
-        if (props.players.length > 2) {
-            props.setPlayers([
-                ...props.players.slice(0, props.players.length - 1)
-            ]);
-        }
-    };
+        console.log('delete player')
+
+        // if (props.players.length > 2) {
+        //   setPlayers([
+        //     ...props.players.slice(0, props.players.length - 1)
+        //   ]);
+        // }
+    }
 
     return (
         <div>

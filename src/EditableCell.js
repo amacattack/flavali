@@ -2,7 +2,7 @@ import * as React from 'react';
 import TableCell from '@mui/material/TableCell';
 
 function EditableCell(props) {
-    const [text, setText] = React.useState(props.defaultValue)
+    const [value, setValue] = React.useState(props.defaultValue)
     const [isFocused, setIsFocused] = React.useState(false)
     const [mouse, setMouse] = React.useState(false)
 
@@ -20,10 +20,8 @@ function EditableCell(props) {
                 type={props.type}
                 min="0" 
                 max="10"
-                onChange={(changeEvent) => {
-                    setText(changeEvent.target.value);
-                }}
-                value={text}
+                onChange={(changeEvent) => setValue(changeEvent.target.value)}
+                value={value}
                 style={{
                     backgroundColor: 'transparent',
                     outline: 'none',
@@ -33,7 +31,12 @@ function EditableCell(props) {
                     borderBottom: getBorderBottom(),
                 }}
                 onFocus={() => setIsFocused(true)}
-                onBlur={() => setIsFocused(false)}
+                onBlur={(e) => {
+                    setIsFocused(false)
+                    if (props.onBlur) {
+                        props.onBlur(e.target.value)
+                    }
+                }}
                 onMouseEnter={() => setMouse(true)}
                 onMouseLeave={() => setMouse(false)}
             />
