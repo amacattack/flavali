@@ -38,6 +38,7 @@ function App(props) {
         key={category.name}
         playerNames={state.players}
         foodRows={category.foodRows}
+        dispatch={dispatch}
         setCategoryName={(newCategoryName) => dispatch(updateCategoryName(categoryIdx, newCategoryName))}
       />
     );
