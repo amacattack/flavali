@@ -74,7 +74,7 @@ function PlayerNamesDialog(props) {
             <Button onClick={handleAddPlayer}>
               <FontAwesomeIcon icon={faCirclePlus} />
             </Button>
-            <DeletePlayerDialog players={players} setPlayers={setPlayers} />
+            <DeletePlayerDialog players={props.players} />
           </Grid>
         </DialogContent>
         <DialogActions>
