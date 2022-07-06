@@ -20,6 +20,7 @@ function EditableCell(props) {
                 min="0" 
                 max="10"
                 onChange={(changeEvent) => {
+                  changeEvent.preventDefault();
                   if (props.onChange !== undefined) {
                     const changedText = changeEvent.target.value
                     props.onChange(changedText);
