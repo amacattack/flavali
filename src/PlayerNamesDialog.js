@@ -7,9 +7,12 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import Grid from "@material-ui/core/Grid";
+import Backdrop from '@mui/material/Backdrop';
+import CircularProgress from '@mui/material/CircularProgress';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCircleMinus, faCirclePlus, faUserGroup } from "@fortawesome/free-solid-svg-icons";
-import {addPlayer} from './state';
+import DeletePlayerDialog from './DeletePlayerDialog';
+import { addPlayer } from './state';
 
 function PlayerNamesDialog(props) {
   const [isOpen, isSetOpen] = React.useState(false);
@@ -48,23 +51,18 @@ function PlayerNamesDialog(props) {
     props.dispatch(addPlayer(newPlayerName))
   }
 
-  // Remove Player Text Field 
-  const deletePlayer = () => {
-    console.log('delete player')
-
-    // if (props.players.length > 2) {
-    //   setPlayers([
-    //     ...props.players.slice(0, props.players.length - 1)
-    //   ]);
-    // }
-    // console.log("minus players: ", props.players)
-  }
-
   return (
     <div>
       <Button onClick={handleClickOpen}>
         <FontAwesomeIcon icon={faUserGroup} />
       </Button>
+      <Backdrop
+        sx={{ color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1 }}
+        open={isOpen}
+        onClick={handleClose}
+      >
+        <CircularProgress color="inherit" />
+      </Backdrop>
       <Dialog open={isOpen} onClose={handleClose}>
         <DialogTitle>Player Names</DialogTitle>
         <DialogContent>
@@ -76,9 +74,7 @@ function PlayerNamesDialog(props) {
             <Button onClick={handleAddPlayer}>
               <FontAwesomeIcon icon={faCirclePlus} />
             </Button>
-            <Button onClick={deletePlayer}>
-              <FontAwesomeIcon icon={faCircleMinus} />
-            </Button>
+            <DeletePlayerDialog players={players} setPlayers={setPlayers} />
           </Grid>
         </DialogContent>
         <DialogActions>
