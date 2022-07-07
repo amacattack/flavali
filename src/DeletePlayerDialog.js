@@ -7,6 +7,7 @@ import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCircleMinus } from "@fortawesome/free-solid-svg-icons";
+import { removePlayer } from './state';
 
 // Delete Players Dialog 
 function DeletePlayerDialog(props) {
@@ -29,6 +30,8 @@ function DeletePlayerDialog(props) {
         //     ...props.players.slice(0, props.players.length - 1)
         //   ]);
         // }
+        props.dispatch(removePlayer());
+        console.log("dispatch player to delete: ")
     }
 
     return (

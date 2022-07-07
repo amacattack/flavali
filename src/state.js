@@ -134,15 +134,34 @@ export const reducer = function reducer(state, action) {
     }
 
     case "DELETE_PLAYER": {
-      // Players array
-      const updatedPlayers = [...state.players];
+      // Remove last player from players array
+      const updatedPlayers = state.players.slice(0, state.players.length -1);
 
       // Removing a player shoud remove a foodRow from each category 
-      // Iterate over each category 
+      // Iterate over each category
+      // Build up new list of categories where
+      // 1. last foodRow is removed from each category and
+      // 2. last score of each foodRow is removed
       const updatedCategories = state.categories.map((category) => {
-        // delete last existing foodRow
-        const updatedFoodRows = category.foodRows.slice(category.foodRows.length -1);
+        const updatedCategory = { ...category }
+
+        // 1. delete last existing foodRow for current category
+        const remainingFoodRows = category.foodRows.slice(0, category.foodRows.length - 1);
+        console.log("food rows without last: ", remainingFoodRows);
+
+        // 2. remove last score from remaining foodRows for current category
+        const updatedFoodRows = remainingFoodRows.map((foodRow) => {
+          const updatedFoodRowScores = foodRow.playerScores.slice(0, foodRow.playerScores.length - 1);
+          return { ...foodRow, playerScores: updatedFoodRowScores};
+        })
+        console.log("remove score: ", updatedFoodRows)
+
+        // return updated category with one less foodRow and one less score on each foodRow
+        updatedCategory.foodRows = updatedFoodRows;
+        return updatedCategory;
       })
+      console.log("REDUCER - categories updated: ", updatedCategories);
+
       return {
         players: updatedPlayers,
         categories: updatedCategories,
@@ -209,10 +228,9 @@ export const addPlayer = (newPlayerName) => {
   };
 };
 
-export const removePlayer = (playerIdxToDelete) => {
+export const removePlayer = () => {
   return {
     type: "DELETE_PLAYER",
-    playerIdxToDelete,
   };
 };
 
