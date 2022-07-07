@@ -100,7 +100,9 @@ export const reducer = function reducer(state, action) {
   let newState;
   switch (action.type) {
     // Player action listeners
+
     case "ADD_PLAYER": {
+      // creates a new list with newPlayerName appended to the end 
       const updatedPlayers = [...state.players, action.newPlayerName];
 
       // Each new player should add a new foodRow to each category
@@ -131,10 +133,22 @@ export const reducer = function reducer(state, action) {
       };
     }
 
-    case "DELETE_PLAYER":
+    case "DELETE_PLAYER": {
+      // Players array
+      const updatedPlayers = [...state.players];
+
+      // Removing a player shoud remove a foodRow from each category 
+      // Iterate over each category 
+      const updatedCategories = state.categories.map((category) => {
+        // delete last existing foodRow
+        const updatedFoodRows = category.foodRows.slice(category.foodRows.length -1);
+      })
       return {
-        // TODO:
+        players: updatedPlayers,
+        categories: updatedCategories,
       };
+    }
+
 
     case "UPDATE_PLAYER_NAME":
       const updatedPlayers = state.players.map((playerName, idx) => {
@@ -149,8 +163,23 @@ export const reducer = function reducer(state, action) {
 
     // Category action listeners
     case "UPDATE_CATEGORY_NAME":
-      // TODO
-      return state;
+      const updatedCategories = state.categories.map((category, idx) => {
+        if (action.categoryIdx === idx) {
+          // Update category name at the action's specified index
+
+          // This would update the old version of the state - bad practice
+          // category.name = action.newCategoryName;
+
+          // Returns a new category object with update name
+          return {
+            ...category,
+            name: action.newCategoryName,
+          };
+        } else {
+          return category;
+        }
+      });
+      return { players: state.players, categories: updatedCategories };
 
     case "ADD_CATEGORY":
       break;
@@ -187,6 +216,7 @@ export const removePlayer = (playerIdxToDelete) => {
   };
 };
 
+
 export const updatePlayerName = (playerIdx, newPlayerName) => {
   return {
     type: "UPDATE_PLAYER_NAME",
@@ -197,10 +227,11 @@ export const updatePlayerName = (playerIdx, newPlayerName) => {
 
 
 export const updateCategoryName = (categoryIdx, newCategoryName) => {
-  // TODO:
+  console.log("category index: ", categoryIdx);
+  console.log("new category name: ", newCategoryName);
   return {
     type: "UPDATE_CATEGORY_NAME",
     categoryIdx,
     newCategoryName,
-  }
-}
+  };
+};

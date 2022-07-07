@@ -1,9 +1,9 @@
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+// import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import "./App.css";
-import {
-  faHistory,
-  faPenToSquare,
-} from "@fortawesome/free-solid-svg-icons";
+// import {
+//   faHistory,
+//   faPenToSquare,
+// } from "@fortawesome/free-solid-svg-icons";
 import EditableScoreTable from "./EditableScoreTable";
 import EditableGameName from "./EditableGameName";
 import { ThemeProvider, createTheme, Button } from "@mui/material";
