@@ -37,8 +37,10 @@ function DeletePlayerDialog(props) {
     return (
         <div>
             {/* open dialog need to be called  */}
-            <Button onClick={handleClickOpen}>
-                <FontAwesomeIcon icon={faCircleMinus} />
+            <Button onClick={handleClickOpen}
+                disabled={props.players.length <= 2}
+            >
+                <FontAwesomeIcon icon={faCircleMinus}/>
             </Button>
             <Dialog open={isOpen} onClose={handleClose} >
                 <DialogTitle>
@@ -52,10 +54,12 @@ function DeletePlayerDialog(props) {
                 <DialogActions>
                     <Button onClick={handleClose}>Cancel</Button>
                     {/* DeletePlayer & handleClose need to be called */}
-                    <Button onClick={() => {
-                        deletePlayer();
-                        handleClose();
-                    }}>
+                    <Button 
+                        onClick={() => {
+                            deletePlayer();
+                            handleClose();
+                        }}
+                    >
                         Confirm
                     </Button>
                 </DialogActions>

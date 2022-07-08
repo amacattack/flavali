@@ -134,6 +134,9 @@ export const reducer = function reducer(state, action) {
     }
 
     case "DELETE_PLAYER": {
+      if(state.players.length <= 2) {
+        return state;
+      }
       // Remove last player from players array
       const updatedPlayers = state.players.slice(0, state.players.length -1);
 

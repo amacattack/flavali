@@ -10,7 +10,7 @@ import Grid from "@material-ui/core/Grid";
 import Backdrop from '@mui/material/Backdrop';
 import CircularProgress from '@mui/material/CircularProgress';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCircleMinus, faCirclePlus, faUserGroup } from "@fortawesome/free-solid-svg-icons";
+import {  faCirclePlus, faUserGroup } from "@fortawesome/free-solid-svg-icons";
 import DeletePlayerDialog from './DeletePlayerDialog';
 import { addPlayer } from './state';
 
