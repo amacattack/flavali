@@ -134,11 +134,11 @@ export const reducer = function reducer(state, action) {
     }
 
     case "DELETE_PLAYER": {
-      if(state.players.length <= 2) {
+      if (state.players.length <= 2) {
         return state;
       }
       // Remove last player from players array
-      const updatedPlayers = state.players.slice(0, state.players.length -1);
+      const updatedPlayers = state.players.slice(0, state.players.length - 1);
 
       // Removing a player shoud remove a foodRow from each category 
       // Iterate over each category
@@ -155,7 +155,7 @@ export const reducer = function reducer(state, action) {
         // 2. remove last score from remaining foodRows for current category
         const updatedFoodRows = remainingFoodRows.map((foodRow) => {
           const updatedFoodRowScores = foodRow.playerScores.slice(0, foodRow.playerScores.length - 1);
-          return { ...foodRow, playerScores: updatedFoodRowScores};
+          return { ...foodRow, playerScores: updatedFoodRowScores };
         })
         console.log("remove score: ", updatedFoodRows)
 
@@ -201,10 +201,40 @@ export const reducer = function reducer(state, action) {
           return category;
         }
       });
-      return { players: state.players, categories: updatedCategories };
+      return {
+        ...state,
+        categories: updatedCategories
+      };
 
     case "ADD_CATEGORY":
+      const category = {
+        name: `Category ${state.categories.length + 1}`,
+        foodRows: [
+          {
+            foodName: "Item 1",
+            playerScores: [0.0, 0.0],
+            average: 0.0,
+          },
+          {
+            foodName: "Item 2",
+            playerScores: [0.0, 0.0],
+            average: 0.0,
+          },
+        ],
+      };
+
+      const updatedCategoryArray = [...state.categories, category];
+
+      return {
+        ...state,
+        categories: updatedCategoryArray
+      };
+
+    case "DELETE_CATEGORY":
       break;
+      // return {
+
+      // };
 
     case "UPDATE_SCORE_FOR_ITEM":
       break;
@@ -256,3 +286,15 @@ export const updateCategoryName = (categoryIdx, newCategoryName) => {
     newCategoryName,
   };
 };
+
+export const addCategory = () => {
+  return {
+    type: "ADD_CATEGORY",
+  };
+};
+
+export const deleteCategory = () => {
+  return {
+    type: "DELETE_CATEGORY",
+  }
+}

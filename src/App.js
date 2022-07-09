@@ -10,7 +10,7 @@ import { ThemeProvider, createTheme, Button } from "@mui/material";
 import PlayerNamesDialog from "./PlayerNamesDialog";
 import SignInModal from "./SignInModal/SignInModal";
 import { useState, useReducer } from "react";
-import { DEFAULT_GAME_DATA, reducer, updateCategoryName } from "./state";
+import { DEFAULT_GAME_DATA, reducer, updateCategoryName, addCategory} from "./state";
 
 function App(props) {
   const [isSignInModalOpen, setIsSignInModalOpen] = useState(false);
@@ -80,12 +80,12 @@ function App(props) {
 
         {/* GAME CARDS | SCORE TABLES */}
         {renderScoreTables()}
-        {/* <EditableScoreTable></EditableScoreTable>
-        <EditableScoreTable></EditableScoreTable>
-        <EditableScoreTable></EditableScoreTable>
-        <EditableScoreTable></EditableScoreTable> */}
         <br></br>
-
+        <div className="categoryButton">
+          <button >Delete Category</button>
+          <button onClick={() => dispatch(addCategory())}>Add Category</button>
+        </div>
+    
       </ThemeProvider>
     </div>
   );

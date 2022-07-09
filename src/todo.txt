@@ -16,12 +16,14 @@ State Management
 --------------------------
 
     PLAYERS:
-    [] adding player will add a new row (item) and new column (player #)
-    [] update name 
+    [x] adding player will add a new row (item) and new column (player #)
+    [x] delete player will delete row and coloumn
+    [] update name from dialog
 
     CATEGORIES: 
-    [] update name 
-    [] add + delete categories 
+    [x] update name 
+    [x] add categories 
+    [] delete categories 
     [] update scores 
     [] Calculate food average 
     [] Calculate category averegae 
