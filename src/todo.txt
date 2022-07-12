@@ -23,7 +23,7 @@ State Management
     CATEGORIES: 
     [x] update name 
     [x] add categories 
-    [] delete categories 
+    [x] delete categories 
     [] update scores 
     [] Calculate food average 
     [] Calculate category averegae 

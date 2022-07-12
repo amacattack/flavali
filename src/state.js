@@ -6,7 +6,6 @@
 |___|_| \_|___| |_| |___/_/   \_\_____| |____/ |_/_/   \_\_| |_____|
                                                                     
 */
-
 export const DEFAULT_GAME_DATA = {
   players: ["Player 1", "Player 2"],
   categories: [
@@ -181,6 +180,7 @@ export const reducer = function reducer(state, action) {
           return playerName;
         }
       });
+
       return { players: updatedPlayers, categories: state.categories };
 
     // Category action listeners
@@ -201,6 +201,7 @@ export const reducer = function reducer(state, action) {
           return category;
         }
       });
+      
       return {
         ...state,
         categories: updatedCategories
@@ -230,11 +231,15 @@ export const reducer = function reducer(state, action) {
         categories: updatedCategoryArray
       };
 
-    case "DELETE_CATEGORY":
-      break;
-      // return {
 
-      // };
+    case "DELETE_CATEGORY":
+      const deleteCategories = state.categories.slice(0, state.categories.length - 1);
+
+      return {
+        ...state,
+        categories: deleteCategories
+      };
+
 
     case "UPDATE_SCORE_FOR_ITEM":
       break;
@@ -267,7 +272,6 @@ export const removePlayer = () => {
   };
 };
 
-
 export const updatePlayerName = (playerIdx, newPlayerName) => {
   return {
     type: "UPDATE_PLAYER_NAME",
@@ -275,7 +279,6 @@ export const updatePlayerName = (playerIdx, newPlayerName) => {
     newPlayerName,
   };
 };
-
 
 export const updateCategoryName = (categoryIdx, newCategoryName) => {
   console.log("category index: ", categoryIdx);

@@ -10,7 +10,7 @@ import { ThemeProvider, createTheme, Button } from "@mui/material";
 import PlayerNamesDialog from "./PlayerNamesDialog";
 import SignInModal from "./SignInModal/SignInModal";
 import { useState, useReducer } from "react";
-import { DEFAULT_GAME_DATA, reducer, updateCategoryName, addCategory} from "./state";
+import { DEFAULT_GAME_DATA, reducer, updateCategoryName, addCategory, deleteCategory} from "./state";
 
 function App(props) {
   const [isSignInModalOpen, setIsSignInModalOpen] = useState(false);
@@ -82,7 +82,7 @@ function App(props) {
         {renderScoreTables()}
         <br></br>
         <div className="categoryButton">
-          <button >Delete Category</button>
+          <button onClick={() => dispatch(deleteCategory())}>Delete Category</button>
           <button onClick={() => dispatch(addCategory())}>Add Category</button>
         </div>
     
