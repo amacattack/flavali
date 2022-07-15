@@ -240,6 +240,8 @@ export const reducer = function reducer(state, action) {
         categories: deleteCategories
       };
 
+    case "UPDATE_ITEM_NAME":
+      break;
 
     case "UPDATE_SCORE_FOR_ITEM":
       break;
@@ -299,5 +301,19 @@ export const addCategory = () => {
 export const deleteCategory = () => {
   return {
     type: "DELETE_CATEGORY",
-  }
-}
+  };
+};
+
+export const updateItemName = (itemIdx, newItemName) => {
+  return {
+    type: "UPDATE_ITEM_NAME",
+    itemIdx, 
+    newItemName,
+  };
+};
+
+export const updateScoreForItem = () => {
+  return {
+    type: "UPDATE_SCORE_FOR_ITEM",
+  };
+};

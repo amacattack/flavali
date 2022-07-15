@@ -30,9 +30,3 @@ State Management
 
     ITEMS:
     [] update names 
-
-after that see if you can update the category name in the global state by mimicking the pattern to update player names. 
-relevant code is
-* L190 to of state.js create updatePlayerName actions
-* L139 of state.js that uses the updatePlayerName action to update the global state
-* and L20 of EditableScoreTable.js that creates & dispatches updatePlayerName actions

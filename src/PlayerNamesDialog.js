@@ -10,9 +10,9 @@ import Grid from "@material-ui/core/Grid";
 import Backdrop from '@mui/material/Backdrop';
 import CircularProgress from '@mui/material/CircularProgress';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {  faCirclePlus, faUserGroup } from "@fortawesome/free-solid-svg-icons";
+import { faCirclePlus, faUserGroup } from "@fortawesome/free-solid-svg-icons";
 import DeletePlayerDialog from './DeletePlayerDialog';
-import { addPlayer } from './state';
+import { addPlayer, updatePlayerName } from './state';
 
 function PlayerNamesDialog(props) {
   const [isOpen, isSetOpen] = React.useState(false);
@@ -28,15 +28,20 @@ function PlayerNamesDialog(props) {
 
   // Rendering Player Text Fields
   const renderPlayerTextFields = () => {
-    const playerTextFields = props.players.map((player) =>
-      <TextField
-        key={player}
-        label={player}
-        autoFocus
-        margin="dense"
-        fullWidth
-        variant="standard"
-      />
+    const playerTextFields = props.players.map((player, playerIdx) => {
+      return (
+        <TextField
+          key={playerIdx}
+          label={player}
+          onBlur={(event) => {
+            props.dispatch(updatePlayerName(playerIdx, event.target.value))
+          }}
+          margin="dense"
+          fullWidth
+          variant="standard"
+        />
+      )
+    }
     );
     return playerTextFields;
   }
@@ -74,7 +79,7 @@ function PlayerNamesDialog(props) {
             <Button onClick={handleAddPlayer}>
               <FontAwesomeIcon icon={faCirclePlus} />
             </Button>
-            <DeletePlayerDialog players={props.players} dispatch={props.dispatch}/>
+            <DeletePlayerDialog players={props.players} dispatch={props.dispatch} />
           </Grid>
         </DialogContent>
         <DialogActions>
