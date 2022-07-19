@@ -10,13 +10,13 @@ import { ThemeProvider, createTheme, Button } from "@mui/material";
 import PlayerNamesDialog from "./PlayerNamesDialog";
 import SignInModal from "./SignInModal/SignInModal";
 import { useState, useReducer } from "react";
-import { DEFAULT_GAME_DATA, reducer, updateCategoryName, addCategory, deleteCategory} from "./state";
+import { DEFAULT_GAME_DATA, reducer, updateCategoryName, addCategory, deleteCategory, updateItemName} from "./state";
 
 function App(props) {
   const [isSignInModalOpen, setIsSignInModalOpen] = useState(false);
   const [isSignedIn, setIsSignedIn] = useState(false); // Local signed-in state.
   const [state, dispatch] = useReducer(reducer, DEFAULT_GAME_DATA)
-  console.log('state: ', state)
+  // console.log('state: ', state)
 
   const theme = createTheme({
     palette: {
@@ -40,6 +40,7 @@ function App(props) {
         foodRows={category.foodRows}
         dispatch={dispatch}
         setCategoryName={(newCategoryName) => dispatch(updateCategoryName(categoryIdx, newCategoryName))}
+        categoryIdx={categoryIdx}
       />
     );
     return scoreTables;

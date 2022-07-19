@@ -5,7 +5,7 @@ App.js
 [x] render player names from api.js
 [x] add prop for foodRows on EditableScoreTable 
 [x] render food rows {"item", [0.0, 0.0], 0.0}
-[] create UI for adding/removing categories 
+[x] create UI for adding/removing categories 
 
 Players Dialog
 [x] create UI for adding/removing players 
@@ -18,7 +18,7 @@ State Management
     PLAYERS:
     [x] adding player will add a new row (item) and new column (player #)
     [x] delete player will delete row and coloumn
-    [] update name from dialog
+    [x] update name from dialog
 
     CATEGORIES: 
     [x] update name 
@@ -29,4 +29,4 @@ State Management
     [] Calculate category averegae 
 
     ITEMS:
-    [] update names 
+    [x] update names 

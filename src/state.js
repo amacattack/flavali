@@ -124,7 +124,7 @@ export const reducer = function reducer(state, action) {
           foodRows: [...updatedFoodRows, newFoodRow],
         };
       });
-      console.log("updatedCategories: ", updatedCategories);
+    
 
       return {
         players: updatedPlayers,
@@ -149,20 +149,17 @@ export const reducer = function reducer(state, action) {
 
         // 1. delete last existing foodRow for current category
         const remainingFoodRows = category.foodRows.slice(0, category.foodRows.length - 1);
-        console.log("food rows without last: ", remainingFoodRows);
 
         // 2. remove last score from remaining foodRows for current category
         const updatedFoodRows = remainingFoodRows.map((foodRow) => {
           const updatedFoodRowScores = foodRow.playerScores.slice(0, foodRow.playerScores.length - 1);
           return { ...foodRow, playerScores: updatedFoodRowScores };
         })
-        console.log("remove score: ", updatedFoodRows)
 
         // return updated category with one less foodRow and one less score on each foodRow
         updatedCategory.foodRows = updatedFoodRows;
         return updatedCategory;
       })
-      console.log("REDUCER - categories updated: ", updatedCategories);
 
       return {
         players: updatedPlayers,
@@ -201,7 +198,7 @@ export const reducer = function reducer(state, action) {
           return category;
         }
       });
-      
+
       return {
         ...state,
         categories: updatedCategories
@@ -241,7 +238,13 @@ export const reducer = function reducer(state, action) {
       };
 
     case "UPDATE_ITEM_NAME":
-      break;
+      const categoriesCopy = [ ...state.categories ]
+      categoriesCopy[action.categoryIdx].foodRows[action.itemIdx].foodName = action.newItemName
+      
+      return {
+        ...state,
+        categories: categoriesCopy,
+      }
 
     case "UPDATE_SCORE_FOR_ITEM":
       break;
@@ -283,8 +286,6 @@ export const updatePlayerName = (playerIdx, newPlayerName) => {
 };
 
 export const updateCategoryName = (categoryIdx, newCategoryName) => {
-  console.log("category index: ", categoryIdx);
-  console.log("new category name: ", newCategoryName);
   return {
     type: "UPDATE_CATEGORY_NAME",
     categoryIdx,
@@ -304,16 +305,21 @@ export const deleteCategory = () => {
   };
 };
 
-export const updateItemName = (itemIdx, newItemName) => {
+export const updateItemName = (categoryIdx, itemIdx, newItemName) => {
   return {
     type: "UPDATE_ITEM_NAME",
-    itemIdx, 
+    categoryIdx,
+    itemIdx,
     newItemName,
   };
 };
 
-export const updateScoreForItem = () => {
+export const updateScoreForItem = (categoryIdx, itemIdx, scoreIdx, newScore) => {
   return {
     type: "UPDATE_SCORE_FOR_ITEM",
+    categoryIdx,
+    itemIdx,
+    scoreIdx, // index of the player whose score is changing
+    newScore
   };
 };

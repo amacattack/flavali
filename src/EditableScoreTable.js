@@ -7,7 +7,7 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper'
 import EditableCell from './EditableCell';
-import {updatePlayerName} from './state';
+import { updatePlayerName, updateItemName } from './state';
 
 function EditableScoreTable(props) {
 
@@ -26,7 +26,7 @@ function EditableScoreTable(props) {
 
     // Rendering Food Row on Table 
     const renderFoodRows = () => {
-        const foodRows = props.foodRows.map((row) =>
+        const foodRows = props.foodRows.map((row, itemIdx) =>
             <TableRow
                 sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                 key={row.foodName}
@@ -35,6 +35,12 @@ function EditableScoreTable(props) {
                 <EditableCell
                     defaultValue={row.foodName}
                     key={row.foodName}
+                    onBlur={(newItemName) => props.dispatch(updateItemName(
+                        props.categoryIdx, // ????
+                        itemIdx,
+                        newItemName
+                    ))
+                    }
                 />
 
                 {/* render scores */}
@@ -42,7 +48,7 @@ function EditableScoreTable(props) {
                     return (
                         <EditableCell
                             defaultValue={scores}
-                            key={index}     
+                            key={index}
                             type={"number"}
                             align={"right"}
                         />
@@ -67,7 +73,7 @@ function EditableScoreTable(props) {
             <Table aria-label="simple table">
                 <TableHead>
                     <TableRow>
-                      <EditableCell defaultValue={props.category} onBlur={props.setCategoryName}/>
+                        <EditableCell defaultValue={props.category} onBlur={props.setCategoryName} />
                         {renderPlayerNames()}
                         <TableCell align={"right"}>Average</TableCell>
                     </TableRow>
