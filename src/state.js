@@ -96,7 +96,6 @@ export const DEFAULT_GAME_DATA = {
                                            
 */
 export const reducer = function reducer(state, action) {
-  let newState;
   switch (action.type) {
     // Player action listeners
 
@@ -237,7 +236,7 @@ export const reducer = function reducer(state, action) {
         categories: deleteCategories,
       };
 
-    case "UPDATE_ITEM_NAME":
+    case "UPDATE_ITEM_NAME": {
       // make a copy of the categories to avoid updating the state object directly
       const categoriesCopy = [...state.categories];
 
@@ -250,20 +249,17 @@ export const reducer = function reducer(state, action) {
         ...state,
         categories: categoriesCopy,
       };
+    }
 
     case "UPDATE_SCORE_FOR_ITEM":
       const categoriesCopied = [...state.categories];
 
-      const categoryUpdate = categoriesCopied[action.categoryIdx];
-      const foodRowUpdate = categoryUpdate.foodRows[action.itemIdx];
+      const categoryToUpdate = categoriesCopied[action.categoryIdx];
+      const foodRowToUpdate = categoryToUpdate.foodRows[action.itemIdx];
 
-      console.log('action score idx: ', action.scoreIdx)
-
-      //  const scoreUpdate = foodRowUpdate.playerScores[action.scoreIdx];
-      //  scoreUpdate.playerScores = action.newScore;
-      //  console.log("scoreUpdate: ", action.newScore)
-
-      foodRowUpdate.playerScores[action.scoreIdx] = action.newScore;
+      foodRowToUpdate.playerScores[action.scoreIdx] = action.newScore;
+      const sum = foodRowToUpdate.playerScores.reduce((a, b) => a + b, 0)
+      foodRowToUpdate.average =  sum / foodRowToUpdate.playerScores.length
 
       return {
         ...state,

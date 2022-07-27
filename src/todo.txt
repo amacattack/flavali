@@ -24,9 +24,9 @@ State Management
     [x] update name 
     [x] add categories 
     [x] delete categories 
-    [] update scores 
-    [] Calculate food average 
-    [] Calculate category averegae 
+    [x] update scores 
+    [x] Calculate food average 
+    [] Calculate category average (on game finish)
 
     ITEMS:
     [x] update names 

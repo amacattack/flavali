@@ -52,7 +52,7 @@ function EditableScoreTable(props) {
                                 props.categoryIdx,
                                 itemIdx,
                                 scoreIdx,
-                                newScore
+                                parseInt(newScore)
                             ))
                             }
                             key={scoreIdx}

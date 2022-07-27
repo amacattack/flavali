@@ -46,8 +46,6 @@ function App(props) {
     return scoreTables;
   }
 
-  console.log(state)
-
   return (
     <div className="App">
       <ThemeProvider theme={theme}>
@@ -85,8 +83,8 @@ function App(props) {
         {renderScoreTables()}
         <br></br>
         <div className="categoryButton">
-          <button onClick={() => dispatch(deleteCategory())}>Delete Category</button>
-          <button onClick={() => dispatch(addCategory())}>Add Category</button>
+          <Button variant='contained' onClick={() => dispatch(deleteCategory())}>Delete Category</Button>
+          <Button variant='contained' onClick={() => dispatch(addCategory())}>Add Category</Button>
         </div>
     
       </ThemeProvider>
