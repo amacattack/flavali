@@ -10,7 +10,7 @@ import { ThemeProvider, createTheme, Button } from "@mui/material";
 import PlayerNamesDialog from "./PlayerNamesDialog";
 import SignInModal from "./SignInModal/SignInModal";
 import { useState, useReducer } from "react";
-import { DEFAULT_GAME_DATA, reducer, updateCategoryName, addCategory, deleteCategory, updateItemName} from "./state";
+import { DEFAULT_GAME_DATA, reducer, updateCategoryName, addCategory, deleteCategory } from "./state";
 
 function App(props) {
   const [isSignInModalOpen, setIsSignInModalOpen] = useState(false);
@@ -45,6 +45,8 @@ function App(props) {
     );
     return scoreTables;
   }
+
+  console.log(state)
 
   return (
     <div className="App">

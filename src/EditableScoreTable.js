@@ -7,7 +7,7 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper'
 import EditableCell from './EditableCell';
-import { updatePlayerName, updateItemName } from './state';
+import { updatePlayerName, updateItemName, updateScoreForItem } from './state';
 
 function EditableScoreTable(props) {
 
@@ -44,11 +44,18 @@ function EditableScoreTable(props) {
                 />
 
                 {/* render scores */}
-                {row.playerScores.map((scores, index) => {
+                {row.playerScores.map((score, scoreIdx) => {
                     return (
                         <EditableCell
-                            defaultValue={scores}
-                            key={index}
+                            defaultValue={score}
+                            onBlur={(newScore) => props.dispatch(updateScoreForItem(
+                                props.categoryIdx,
+                                itemIdx,
+                                scoreIdx,
+                                newScore
+                            ))
+                            }
+                            key={scoreIdx}
                             type={"number"}
                             align={"right"}
                         />

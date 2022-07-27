@@ -124,7 +124,7 @@ export const reducer = function reducer(state, action) {
           foodRows: [...updatedFoodRows, newFoodRow],
         };
       });
-    
+
 
       return {
         players: updatedPlayers,
@@ -201,7 +201,7 @@ export const reducer = function reducer(state, action) {
 
       return {
         ...state,
-        categories: updatedCategories
+        categories: updatedCategories,
       };
 
     case "ADD_CATEGORY":
@@ -225,7 +225,7 @@ export const reducer = function reducer(state, action) {
 
       return {
         ...state,
-        categories: updatedCategoryArray
+        categories: updatedCategoryArray,
       };
 
 
@@ -234,26 +234,46 @@ export const reducer = function reducer(state, action) {
 
       return {
         ...state,
-        categories: deleteCategories
+        categories: deleteCategories,
       };
 
     case "UPDATE_ITEM_NAME":
-      const categoriesCopy = [ ...state.categories ]
-      categoriesCopy[action.categoryIdx].foodRows[action.itemIdx].foodName = action.newItemName
-      
+      // make a copy of the categories to avoid updating the state object directly
+      const categoriesCopy = [...state.categories];
+
+      // update the relevant piece of state (item name)
+      const categoryToUpdate = categoriesCopy[action.categoryIdx];
+      const foodRowToUpdate = categoryToUpdate.foodRows[action.itemIdx];
+      foodRowToUpdate.foodName = action.newItemName;
+
       return {
         ...state,
         categories: categoriesCopy,
-      }
+      };
 
     case "UPDATE_SCORE_FOR_ITEM":
-      break;
+      const categoriesCopied = [...state.categories];
+
+      const categoryUpdate = categoriesCopied[action.categoryIdx];
+      const foodRowUpdate = categoryUpdate.foodRows[action.itemIdx];
+
+      console.log('action score idx: ', action.scoreIdx)
+
+      //  const scoreUpdate = foodRowUpdate.playerScores[action.scoreIdx];
+      //  scoreUpdate.playerScores = action.newScore;
+      //  console.log("scoreUpdate: ", action.newScore)
+
+      foodRowUpdate.playerScores[action.scoreIdx] = action.newScore;
+
+      return {
+        ...state,
+        categories: categoriesCopied,
+      };
 
     default:
       console.error("unknown action: ", action);
       return state;
   }
-  return newState;
 };
 
 /*
@@ -320,6 +340,6 @@ export const updateScoreForItem = (categoryIdx, itemIdx, scoreIdx, newScore) => 
     categoryIdx,
     itemIdx,
     scoreIdx, // index of the player whose score is changing
-    newScore
+    newScore,
   };
 };
