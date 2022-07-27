@@ -2,6 +2,7 @@ import { initializeApp } from "firebase/app";
 import { getAuth, GoogleAuthProvider } from "firebase/auth";
 import React from "react";
 import ReactDOM from "react-dom/client";
+import { FIREBASE_API_KEY } from "./.env.js";
 import App from "./App";
 import "./index.css";
 import reportWebVitals from "./reportWebVitals";
@@ -10,7 +11,7 @@ import reportWebVitals from "./reportWebVitals";
 // https://console.firebase.google.com/u/0/project/flavali/settings/general/web:MWI3NDM4Y2MtYTc1NS00YTM3LWFiMGUtNmM0ZDE2MmNjNDEz
 // Initialize Firebase
 const firebaseConfig = {
-  apiKey: "***REMOVED***",
+  apiKey: FIREBASE_API_KEY,
   authDomain: "flavali.firebaseapp.com",
   projectId: "flavali",
   storageBucket: "flavali.appspot.com",

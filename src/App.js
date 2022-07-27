@@ -1,15 +1,12 @@
 // import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import "./App.css";
-// import {
-//   faHistory,
-//   faPenToSquare,
-// } from "@fortawesome/free-solid-svg-icons";
+// import { faHistory } from "@fortawesome/free-solid-svg-icons";
 import EditableScoreTable from "./EditableScoreTable";
 import EditableGameName from "./EditableGameName";
-import { ThemeProvider, createTheme, Button } from "@mui/material";
+import { ThemeProvider, createTheme, Box, Button } from "@mui/material";
 import PlayerNamesDialog from "./PlayerNamesDialog";
 import SignInModal from "./SignInModal/SignInModal";
 import { useState, useReducer } from "react";
+import "./App.css";
 import { DEFAULT_GAME_DATA, reducer, updateCategoryName, addCategory, deleteCategory } from "./state";
 
 function App(props) {
@@ -61,8 +58,7 @@ function App(props) {
           <h1>FLAVALI</h1>
           <div className="headerIcons">
             <PlayerNamesDialog dispatch={dispatch} players={state.players}></PlayerNamesDialog>
-            {/* <FontAwesomeIcon icon={faPenToSquare} />
-            <FontAwesomeIcon icon={faHistory} /> */}
+            {/* <FontAwesomeIcon icon={faHistory} /> */}
             <Button variant="contained" onClick={handleLoginPress}>
               {isSignedIn ? "LOG OUT" : "LOG IN"}
             </Button>
@@ -82,11 +78,14 @@ function App(props) {
         {/* GAME CARDS | SCORE TABLES */}
         {renderScoreTables()}
         <br></br>
-        <div className="categoryButton">
-          <Button variant='contained' onClick={() => dispatch(deleteCategory())}>Delete Category</Button>
-          <Button variant='contained' onClick={() => dispatch(addCategory())}>Add Category</Button>
-        </div>
-    
+        <Box display='flex' flexDirection='column' mb={theme.spacing(4)}>
+          <div className="categoryButtons">
+            <Button variant='contained' onClick={() => dispatch(deleteCategory())}>Delete Category</Button>
+            <Button variant='contained' onClick={() => dispatch(addCategory())}>Add Category</Button>
+          </div>
+          {/* <Button fullWidth variant='contained' onClick={() => alert('uwu')}>Finish Game</Button> */}
+        </Box>
+
       </ThemeProvider>
     </div>
   );
@@ -94,5 +93,3 @@ function App(props) {
 }
 
 export default App;
-
-

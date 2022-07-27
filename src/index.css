@@ -53,7 +53,7 @@ h1 {
   justify-content: center;
 }
 
-.categoryButton {
+.categoryButtons {
   display: flex;
   align-items: center;
   justify-content: space-evenly;
