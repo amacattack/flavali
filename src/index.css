@@ -35,16 +35,21 @@ h1 {
 }
 
 .EditableGameName {
-  text-align: left;
+  text-align: center;
   display: flex;
+  padding-bottom: .5rem;
   padding-top: 1rem;
   font-size: 1.5rem;
   font-weight: bold;
   color: #f7f7f7;
+  margin: auto;
 }
 
 .EditableScoreTable {
  margin-top: 1rem;
+ margin-left: auto;
+ margin-right: auto;
+ color: #f7f7f7
 }
 
 .addAnotherPlayer {
@@ -59,4 +64,13 @@ h1 {
   justify-content: space-evenly;
   padding-top: 1rem;
   padding-bottom: 2rem;
+}
+
+
+.tableCell {
+  width: 10%;
+}
+
+.averageCell {
+  width: 10%;
 }

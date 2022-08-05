@@ -58,6 +58,7 @@ function EditableScoreTable(props) {
                             key={scoreIdx}
                             type={"number"}
                             align={"right"}
+                            width={'50'}
                         />
                     )
                 })
@@ -76,13 +77,15 @@ function EditableScoreTable(props) {
     }
 
     return (
-        <TableContainer component={Paper} className="EditableScoreTable">
+        <TableContainer component={Paper} className="EditableScoreTable" 
+            sx={{width: 900, backgroundColor: '#5f5f5f', color: '#f7f7f7',}}
+        >
             <Table aria-label="simple table">
                 <TableHead>
                     <TableRow>
                         <EditableCell defaultValue={props.category} onBlur={props.setCategoryName} />
                         {renderPlayerNames()}
-                        <TableCell align={"right"}>Average</TableCell>
+                        <TableCell className="averageCell" align={"right"}>Average</TableCell>
                     </TableRow>
                 </TableHead>
                 <TableBody>

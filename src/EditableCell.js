@@ -1,7 +1,9 @@
 import * as React from 'react';
 import TableCell from '@mui/material/TableCell';
+import { useTheme } from '@emotion/react';
 
 function EditableCell(props) {
+    const theme = useTheme()
     const [value, setValue] = React.useState(props.defaultValue)
     const [isFocused, setIsFocused] = React.useState(false)
     const [mouse, setMouse] = React.useState(false)
@@ -15,7 +17,7 @@ function EditableCell(props) {
     }
 
     return (
-        <TableCell align={props.align}>
+        <TableCell align={props.align} className="tableCell">
             <input
                 type={props.type}
                 min="0" 
@@ -29,6 +31,9 @@ function EditableCell(props) {
                     boxShadow: 'none',
                     textAlign: props.align,
                     borderBottom: getBorderBottom(),
+                    color: theme.palette.text.primary,
+                    fontFamily: theme.typography.fontFamily,
+                    textDecoration: 'none',
                 }}
                 onFocus={() => setIsFocused(true)}
                 onBlur={(e) => {

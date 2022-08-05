@@ -16,10 +16,18 @@ function App(props) {
   // console.log('state: ', state)
 
   const theme = createTheme({
+    typography: {
+      fontFamily: [
+        "Roboto","Helvetica","Arial", "sans-serif",
+      ],
+    },
     palette: {
       primary: {
         main: "#5f5f5f",
       },
+      text: {
+        primary: '#ffffff',
+      }
     },
   });
 
