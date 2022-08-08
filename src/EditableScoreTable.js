@@ -8,8 +8,10 @@ import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper'
 import EditableCell from './EditableCell';
 import { updatePlayerName, updateItemName, updateScoreForItem } from './state';
+import {useTheme} from '@emotion/react';
 
 function EditableScoreTable(props) {
+    const theme = useTheme()
 
     // Rendering Player Names on Table
     const renderPlayerNames = () => {
@@ -28,7 +30,6 @@ function EditableScoreTable(props) {
     const renderFoodRows = () => {
         const foodRows = props.foodRows.map((row, itemIdx) =>
             <TableRow
-                sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                 key={row.foodName}
             >
                 {/* render food name */}
@@ -78,7 +79,7 @@ function EditableScoreTable(props) {
 
     return (
         <TableContainer component={Paper} className="EditableScoreTable" 
-            sx={{width: 900, backgroundColor: '#5f5f5f', color: '#f7f7f7',}}
+            sx={{backgroundColor: theme.palette.secondary.main, color:theme.palette.text.primary,}}
         >
             <Table aria-label="simple table">
                 <TableHead>

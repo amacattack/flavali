@@ -7,27 +7,34 @@ import PlayerNamesDialog from "./PlayerNamesDialog";
 import SignInModal from "./SignInModal/SignInModal";
 import { useState, useReducer } from "react";
 import "./App.css";
-import { DEFAULT_GAME_DATA, reducer, updateCategoryName, addCategory, deleteCategory } from "./state";
+import {
+  DEFAULT_GAME_DATA,
+  reducer,
+  updateCategoryName,
+  addCategory,
+  deleteCategory,
+} from "./state";
 
 function App(props) {
   const [isSignInModalOpen, setIsSignInModalOpen] = useState(false);
   const [isSignedIn, setIsSignedIn] = useState(false); // Local signed-in state.
-  const [state, dispatch] = useReducer(reducer, DEFAULT_GAME_DATA)
+  const [state, dispatch] = useReducer(reducer, DEFAULT_GAME_DATA);
   // console.log('state: ', state)
 
   const theme = createTheme({
     typography: {
-      fontFamily: [
-        "Roboto","Helvetica","Arial", "sans-serif",
-      ],
+      fontFamily: ["Roboto", "Helvetica", "Arial", "sans-serif"],
     },
     palette: {
       primary: {
-        main: "#5f5f5f",
+        main: "#9797cc",
+      },
+      secondary: {
+        main: "#222222",
       },
       text: {
-        primary: '#ffffff',
-      }
+        primary: "#f7f7f7",
+      },
     },
   });
 
@@ -37,19 +44,21 @@ function App(props) {
 
   // Rendering Score Tables
   const renderScoreTables = () => {
-    const scoreTables = state.categories.map((category, categoryIdx) =>
+    const scoreTables = state.categories.map((category, categoryIdx) => (
       <EditableScoreTable
         category={category.name}
         key={category.name}
         playerNames={state.players}
         foodRows={category.foodRows}
         dispatch={dispatch}
-        setCategoryName={(newCategoryName) => dispatch(updateCategoryName(categoryIdx, newCategoryName))}
+        setCategoryName={(newCategoryName) =>
+          dispatch(updateCategoryName(categoryIdx, newCategoryName))
+        }
         categoryIdx={categoryIdx}
       />
-    );
+    ));
     return scoreTables;
-  }
+  };
 
   return (
     <div className="App">
@@ -65,7 +74,10 @@ function App(props) {
         <div className="navBar">
           <h1>FLAVALI</h1>
           <div className="headerIcons">
-            <PlayerNamesDialog dispatch={dispatch} players={state.players}></PlayerNamesDialog>
+            <PlayerNamesDialog
+              dispatch={dispatch}
+              players={state.players}
+            ></PlayerNamesDialog>
             {/* <FontAwesomeIcon icon={faHistory} /> */}
             <Button variant="contained" onClick={handleLoginPress}>
               {isSignedIn ? "LOG OUT" : "LOG IN"}
@@ -80,24 +92,51 @@ function App(props) {
           }}
         />
 
-        {/* GAME NAME */}
-        <EditableGameName></EditableGameName>
+        <Box
+          width="100%"
+          sx={{
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            justifyContent: "center",
+          }}
+        >
+          <Box width="900px">
+            {/* GAME NAME */}
+            <EditableGameName></EditableGameName>
 
-        {/* GAME CARDS | SCORE TABLES */}
-        {renderScoreTables()}
-        <br></br>
-        <Box display='flex' flexDirection='column' mb={theme.spacing(4)}>
-          <div className="categoryButtons">
-            <Button variant='contained' onClick={() => dispatch(deleteCategory())}>Delete Category</Button>
-            <Button variant='contained' onClick={() => dispatch(addCategory())}>Add Category</Button>
-          </div>
-          {/* <Button fullWidth variant='contained' onClick={() => alert('uwu')}>Finish Game</Button> */}
+            {/* GAME CARDS | SCORE TABLES */}
+            {renderScoreTables()}
+            <br></br>
+            <Box display="flex" flexDirection="column" mb={theme.spacing(4)}>
+              <div className="categoryButtons">
+                <Button
+                  variant="contained"
+                  onClick={() => dispatch(deleteCategory())}
+                >
+                  Delete Category
+                </Button>
+                <Button
+                  variant="contained"
+                  onClick={() => dispatch(addCategory())}
+                >
+                  Add Category
+                </Button>
+              </div>
+              <Button
+                fullWidth
+                variant="contained"
+                onClick={() => alert("uwu")}
+              >
+                Finish Game
+              </Button>
+            </Box>
+          </Box>
         </Box>
-
       </ThemeProvider>
     </div>
   );
-
 }
 
 export default App;
+

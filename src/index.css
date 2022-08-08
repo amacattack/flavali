@@ -5,7 +5,8 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background: #549137;
+  /* background: #549137; */
+  background: #2b4a1c;
   padding-left: 2rem;
   padding-right: 2rem;
 }
@@ -16,7 +17,8 @@ code {
 }
 
 .navBar{
-  background: #549137;
+  /* background: #549137; */
+  background: #2b4a1c;
   display: flex;
   justify-content: space-between;
 }
