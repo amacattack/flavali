@@ -5,6 +5,8 @@ import ReactDOM from "react-dom/client";
 import App from "./App";
 import "./index.css";
 import reportWebVitals from "./reportWebVitals";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { GameSummary } from "./GameSummary";
 
 // Your web app's Firebase configuration. See link below:
 // https://console.firebase.google.com/u/0/project/flavali/settings/general/web:MWI3NDM4Y2MtYTc1NS00YTM3LWFiMGUtNmM0ZDE2MmNjNDEz
@@ -23,9 +25,9 @@ const auth = getAuth(firebaseApp);
 // Configure FirebaseUI.
 const uiConfig = {
   // Popup signin flow rather than redirect flow.
-  signInFlow: 'popup',
+  signInFlow: "popup",
   // Redirect to /signedIn after sign in is successful. Alternatively you can provide a callbacks.signInSuccess function.
-  signInSuccessUrl: '/signedIn',
+  signInSuccessUrl: "/signedIn",
   // We will display Google and Facebook as auth providers.
   signInOptions: [
     GoogleAuthProvider.PROVIDER_ID,
@@ -64,9 +66,12 @@ const uiConfig = {
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
-  <>
-    <App auth={auth} uiConfig={uiConfig} />
-  </>
+  <BrowserRouter>
+    <Routes>
+      <Route path="/" element={<App auth={auth} uiConfig={uiConfig} />} />
+      <Route path="/game-summary" element={<GameSummary />} />
+    </Routes>
+  </BrowserRouter>
 );
 
 // If you want to start measuring performance in your app, pass a function
