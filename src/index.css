@@ -5,8 +5,9 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  /* background: #549137; */
-  background: #2b4a1c;
+
+  background: #ffff;
+  /* background: #fff9da; */
   padding-left: 2rem;
   padding-right: 2rem;
 }
@@ -17,23 +18,23 @@ code {
 }
 
 .navBar{
-  /* background: #549137; */
-  background: #2b4a1c;
+  /* background: #fff9da; */
+  background: #ffff;
   display: flex;
   justify-content: space-between;
 }
 
 h1 {
   text-align: left;
-  color: #f7f7f7;
+  color: #faa307;
 }
 
 .headerIcons {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: flex-end;
   width: 30%;
-  color: #f7f7f7;
+  color: #faa307;
 }
 
 .EditableGameName {
@@ -43,7 +44,7 @@ h1 {
   padding-top: 1rem;
   font-size: 1.5rem;
   font-weight: bold;
-  color: #f7f7f7;
+  color: #faa307;
   margin: auto;
 }
 
@@ -67,7 +68,6 @@ h1 {
   padding-top: 1rem;
   padding-bottom: 2rem;
 }
-
 
 .tableCell {
   width: 10%;
