@@ -14,6 +14,7 @@ import {
   addCategory,
   deleteCategory,
 } from "./state";
+import { Link } from "react-router-dom";
 
 function App(props) {
   const [isSignInModalOpen, setIsSignInModalOpen] = useState(false);
@@ -125,13 +126,15 @@ function App(props) {
                   Add Category
                 </Button>
               </div>
-              <Button
-                fullWidth
-                variant="contained"
-                onClick={() => alert("uwu")}
-              >
-                Finish Game
-              </Button>
+
+              <Link to='/game-summary' className='react-router-link'>
+                <Button
+                  fullWidth
+                  variant="contained"
+                >
+                  Finish Game
+                </Button>
+              </Link>
             </Box>
           </Box>
         </Box>
@@ -141,4 +144,3 @@ function App(props) {
 }
 
 export default App;
-
