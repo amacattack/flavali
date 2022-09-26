@@ -28,13 +28,15 @@ function App(props) {
     },
     palette: {
       primary: {
-        main: "#9797cc",
+        main: "#faa307",
+
       },
       secondary: {
-        main: "#222222",
+        // main: "#eae6e5",
+        main: "#416165",
       },
       text: {
-        primary: "#f7f7f7",
+        primary: "#ffff",
       },
     },
   });
