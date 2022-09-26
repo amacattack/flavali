@@ -259,6 +259,7 @@ export const reducer = function reducer(state, action) {
 
       foodRowToUpdate.playerScores[action.scoreIdx] = action.newScore;
       const sum = foodRowToUpdate.playerScores.reduce((a, b) => a + b, 0)
+      // updates average for item
       foodRowToUpdate.average =  sum / foodRowToUpdate.playerScores.length
 
       return {
