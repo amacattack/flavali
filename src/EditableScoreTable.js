@@ -37,7 +37,7 @@ function EditableScoreTable(props) {
                     defaultValue={row.foodName}
                     key={row.foodName}
                     onBlur={(newItemName) => props.dispatch(updateItemName(
-                        props.categoryIdx, // ????
+                        props.categoryIdx,
                         itemIdx,
                         newItemName
                     ))

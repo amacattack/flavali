@@ -11,6 +11,7 @@ export const DEFAULT_GAME_DATA = {
   categories: [
     {
       name: "Chocolate",
+      category_average: 0.0,
       foodRows: [
         {
           foodName: "Item 1",
@@ -26,6 +27,7 @@ export const DEFAULT_GAME_DATA = {
     },
     {
       name: "Sweet",
+      category_average: 0.0,
       foodRows: [
         {
           foodName: "Item 1",
@@ -41,6 +43,7 @@ export const DEFAULT_GAME_DATA = {
     },
     {
       name: "Salty",
+      category_average: 0.0,
       foodRows: [
         {
           foodName: "Item 1",
@@ -56,6 +59,7 @@ export const DEFAULT_GAME_DATA = {
     },
     {
       name: "Spicy",
+      category_average: 0.0,
       foodRows: [
         {
           foodName: "Item 1",
@@ -71,6 +75,7 @@ export const DEFAULT_GAME_DATA = {
     },
     {
       name: "Wild",
+      category_average: 0.0,
       foodRows: [
         {
           foodName: "Item 1",
@@ -258,16 +263,49 @@ export const reducer = function reducer(state, action) {
       const foodRowToUpdate = categoryToUpdate.foodRows[action.itemIdx];
 
       foodRowToUpdate.playerScores[action.scoreIdx] = action.newScore;
-      const sum = foodRowToUpdate.playerScores.reduce((a, b) => a + b, 0)
+      const sum = foodRowToUpdate.playerScores.reduce((a, b) => a + b, 0);
       // updates average for item
-      foodRowToUpdate.average =  sum / foodRowToUpdate.playerScores.length
+      foodRowToUpdate.average =  sum / foodRowToUpdate.playerScores.length;
 
       return {
         ...state,
         categories: categoriesCopied,
       };
 
-    default:
+      case "CALCULATE_AVERAGE_FOR_CATEGORY": {
+        const categoriesCopied = [...state.categories];
+
+        const categoryToCalculate = categoriesCopied[action.categoryIdx];
+
+        // The "reduce" call below returns the same value as this "forEach" call
+        // let categoryAveragesSum = 0 
+        // categoryToCalculate.foodRows.forEach((foodRow) => categoryAveragesSum += foodRow.average )
+
+        const categoryAveragesSum = categoryToCalculate.foodRows.reduce((foodRow1, foodRow2) => foodRow1.average + foodRow2.average, 0);
+        
+        const categoryAverage = categoryAveragesSum / categoryToCalculate.foodRows.length;
+
+        categoryToCalculate.average = categoryAverage;
+        
+        return {
+          ...state,
+          categories: categoriesCopied,
+        };
+      }
+        
+      //   const categoryToCalculate = state.categories.average.map((category, categoryIdx) => {
+
+      //     if (action.categoryIdx === categoryIdx) {
+
+      //       //add item 1 average & item 2 average / 2
+      //       categoryAverage = 
+
+
+      // return {
+
+      // };
+
+    default: 
       console.error("unknown action: ", action);
       return state;
   }
@@ -331,12 +369,24 @@ export const updateItemName = (categoryIdx, itemIdx, newItemName) => {
   };
 };
 
-export const updateScoreForItem = (categoryIdx, itemIdx, scoreIdx, newScore) => {
+export const updateScoreForItemThunk = (dispatch) => {
+  return (categoryIdx, itemIdx, scoreIdx, newScore) => {
+    return {
+      type: "UPDATE_SCORE_FOR_ITEM",
+      categoryIdx,
+      itemIdx,
+      scoreIdx, // index of the player whose score is changing
+      newScore,
+    };
+  
+    dispatch(calculateAverageForCategory(categoryIdx));
+  }
+
+};
+
+export const calculateAverageForCategory = (categoryIdx) => {
   return {
-    type: "UPDATE_SCORE_FOR_ITEM",
+    type: "CALCULATE_AVERAGE_FOR_CATEGORY",
     categoryIdx,
-    itemIdx,
-    scoreIdx, // index of the player whose score is changing
-    newScore,
   };
 };

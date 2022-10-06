@@ -13,6 +13,7 @@ import {
   updateCategoryName,
   addCategory,
   deleteCategory,
+  calculateAverageForCategory,
 } from "./state";
 import { Link } from "react-router-dom";
 
@@ -131,6 +132,7 @@ function App(props) {
                 <Button
                   fullWidth
                   variant="contained"
+                  onClick={() => dispatch(calculateAverageForCategory(categoryIdx))}
                 >
                   Finish Game
                 </Button>
