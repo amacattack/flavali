@@ -128,7 +128,7 @@ function App(props) {
                 </Button>
               </div>
 
-              <Link to='/game-summary' className='react-router-link'>
+              {/* <Link to='/game-summary' className='react-router-link'>
                 <Button
                   fullWidth
                   variant="contained"
@@ -136,7 +136,7 @@ function App(props) {
                 >
                   Finish Game
                 </Button>
-              </Link>
+              </Link> */}
             </Box>
           </Box>
         </Box>

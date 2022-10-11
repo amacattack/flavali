@@ -369,19 +369,15 @@ export const updateItemName = (categoryIdx, itemIdx, newItemName) => {
   };
 };
 
-export const updateScoreForItemThunk = (dispatch) => {
-  return (categoryIdx, itemIdx, scoreIdx, newScore) => {
-    return {
-      type: "UPDATE_SCORE_FOR_ITEM",
-      categoryIdx,
-      itemIdx,
-      scoreIdx, // index of the player whose score is changing
-      newScore,
-    };
+export const updateScoreForItem = (categoryIdx, itemIdx, scoreIdx, newScore) => {
+  return {
+    type: "UPDATE_SCORE_FOR_ITEM",
+    categoryIdx,
+    itemIdx,
+    scoreIdx, // index of the player whose score is changing
+    newScore,
+  };
   
-    dispatch(calculateAverageForCategory(categoryIdx));
-  }
-
 };
 
 export const calculateAverageForCategory = (categoryIdx) => {
